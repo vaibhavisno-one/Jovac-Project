@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import {
   SignedIn,
   SignedOut,
-  SignInButton,
-  SignUpButton,
   UserButton,
 } from "@clerk/clerk-react";
 import { FaExchangeAlt } from "react-icons/fa";
@@ -37,14 +35,15 @@ const Navbar = () => {
           </SignedIn>
 
           <SignedOut>
-            <SignInButton mode="modal">
-              <button className="hover:text-indigo-600">Login</button>
-            </SignInButton>
-            <SignUpButton mode="modal">
-              <button className="px-4 py-1 rounded bg-indigo-600 text-white font-medium hover:bg-indigo-700">
-                Register
-              </button>
-            </SignUpButton>
+            <Link to="/sign-in" className="hover:text-indigo-600">
+              Login
+            </Link>
+            <Link 
+              to="/sign-up"
+              className="px-4 py-1 rounded bg-indigo-600 text-white font-medium hover:bg-indigo-700"
+            >
+              Register
+            </Link>
           </SignedOut>
         </div>
       </div>

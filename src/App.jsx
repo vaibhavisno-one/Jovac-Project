@@ -18,10 +18,35 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
 
-          {/* Clerk's Built-In Auth Pages */}
-          <Route path="/sign-in/*" element={<SignIn routing="path" path="/sign-in" />} />
-          <Route path="/sign-up/*" element={<SignUp routing="path" path="/sign-up" />} />
+          {/* Clerk Authentication Routes */}
+          <Route 
+            path="/sign-in/*" 
+            element={
+              <div className="flex items-center justify-center min-h-[70vh]">
+                <SignIn 
+                  routing="path" 
+                  path="/sign-in" 
+                  signUpUrl="/sign-up"
+                  afterSignInUrl="/dashboard"
+                />
+              </div>
+            } 
+          />
+          <Route 
+            path="/sign-up/*" 
+            element={
+              <div className="flex items-center justify-center min-h-[70vh]">
+                <SignUp 
+                  routing="path" 
+                  path="/sign-up" 
+                  signInUrl="/sign-in"
+                  afterSignUpUrl="/dashboard"
+                />
+              </div>
+            } 
+          />
 
+          {/* Protected Routes */}
           <Route
             path="/dashboard"
             element={
@@ -46,7 +71,11 @@ const App = () => {
               </ProtectedRoute>
             }
           />
+          
+          {/* Public Routes */}
           <Route path="/contact" element={<ContactUs />} />
+          
+          {/* Catch all - redirect to home */}
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </main>
